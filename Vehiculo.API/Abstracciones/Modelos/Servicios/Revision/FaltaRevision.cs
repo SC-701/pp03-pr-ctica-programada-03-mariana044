@@ -1,6 +1,6 @@
 ﻿namespace Abstracciones.Modelos.Servicios.Revision
 {
-    public class Falta
+    public class FaltaRevision
     {
         public string Tipo { get; set; }
         public string Descripcion { get; set; }
