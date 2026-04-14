@@ -12,11 +12,12 @@ namespace DA.Repositorios
         public RepositorioDapper(IConfiguration configuracion)
         {
             _configuracion = configuracion;
-            _conexionBaseDatos=new SqlConnection(_configuracion.GetConnectionString("BD"));
+            _conexionBaseDatos = new SqlConnection(_configuracion.GetConnectionString("DB"));
         }
+
         public SqlConnection ObtenerRepositorio()
         {
-            return _conexionBaseDatos; 
+            return _conexionBaseDatos;
         }
     }
 }

@@ -12,5 +12,6 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT Id, Nombre & '+'	AS Nombre FROM Marcas
+	SELECT Id, Nombre
+	FROM Marcas
 END

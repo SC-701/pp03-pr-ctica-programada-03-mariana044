@@ -5,11 +5,10 @@ using Microsoft.Data.SqlClient;
 
 namespace DA
 {
-    public class VehiculoDA : IVehiculoDA
+    public class VehiculoDA : IVehiculoDa
     {
         private IRepositorioDapper _repositorioDapper;
         private SqlConnection _sqlConnection;
-
 
         public VehiculoDA(IRepositorioDapper repositorioDapper)
         {
@@ -17,8 +16,8 @@ namespace DA
             _sqlConnection = _repositorioDapper.ObtenerRepositorio();
         }
 
-
         #region Operaciones
+
         public async Task<Guid> Agregar(VehiculoRequest vehiculo)
         {
             string query = @"AgregarVehiculo";
@@ -33,13 +32,16 @@ namespace DA
                 CorreoPropietario = vehiculo.CorreoPropietario,
                 TelefonoPropietario = vehiculo.TelefonoPropietario
             });
+
             return resultadoConsulta;
         }
 
         public async Task<Guid> Editar(Guid Id, VehiculoRequest vehiculo)
         {
-            await verificarVehiculoExiste(Id);
+            await VerificarVehiculoExistente(Id);
+
             string query = @"EditarVehiculo";
+
             var resultadoConsulta = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
             {
                 Id = Id,
@@ -51,38 +53,47 @@ namespace DA
                 CorreoPropietario = vehiculo.CorreoPropietario,
                 TelefonoPropietario = vehiculo.TelefonoPropietario
             });
+
             return resultadoConsulta;
         }
 
+
         public async Task<Guid> Eliminar(Guid Id)
         {
-            await verificarVehiculoExiste(Id);
+            await VerificarVehiculoExistente(Id);
+
             string query = @"EliminarVehiculo";
+            VehiculoResponse? resultadoConsultaVehiculo = await Obtener(Id);
+            if (resultadoConsultaVehiculo == null)
+                return Guid.Empty;
             var resultadoConsulta = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new
             {
-                Id = Id
+                Id = Guid.NewGuid()
             });
-            return resultadoConsulta;
 
+            return resultadoConsulta;
         }
 
         public async Task<IEnumerable<VehiculoResponse>> Obtener()
         {
-               string query = @"ObtenerVehiculos";
-                var resultadoConsulta = await _sqlConnection.QueryAsync<VehiculoResponse>(query);
+            string query = @"ObtenerVehiculos";
+            var resultadoConsulta = await _sqlConnection.QueryAsync<VehiculoResponse>(query);
             return resultadoConsulta;
         }
 
         public async Task<VehiculoDetalle> Obtener(Guid Id)
         {
             string query = @"ObtenerVehiculo";
-            var resultadoConsulta = await _sqlConnection.QueryAsync<VehiculoDetalle>(query,
-            new {Id=Id});
+            var resultadoConsulta = await _sqlConnection.QueryAsync<VehiculoDetalle>(query, new
+            {
+                Id = Id
+            });
             return resultadoConsulta.FirstOrDefault();
         }
         #endregion
+
         #region Helpers
-        private async Task verificarVehiculoExiste(Guid Id)
+        private async Task VerificarVehiculoExistente(Guid Id)
         {
             VehiculoResponse? resultadoConsultaVehiculo = await Obtener(Id);
             if (resultadoConsultaVehiculo == null)

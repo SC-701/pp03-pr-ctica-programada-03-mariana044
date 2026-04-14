@@ -8,4 +8,3 @@
         public string Resultado { get; set; }
     }
 }
-

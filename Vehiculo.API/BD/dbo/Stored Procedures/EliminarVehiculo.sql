@@ -1,5 +1,9 @@
-﻿CREATE PROCEDURE EliminarVehiculo
-	-- Add the parameters for the stored procedure here
+﻿-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE EliminarVehiculo
 	@Id uniqueidentifier
 AS
 BEGIN
@@ -7,11 +11,11 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
+	begin transaction
     -- Insert statements for procedure here
-	
-	BEGIN TRANSACTION
-		DELETE 
-		FROM     Vehiculos
-		WHERE  (Id = @Id)
-COMMIT TRANSACTION
-END	
+Delete
+FROM            Vehiculo 
+WHERE        (Id = @Id)
+select @Id
+commit transaction
+END

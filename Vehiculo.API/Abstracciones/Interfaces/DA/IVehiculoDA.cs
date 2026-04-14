@@ -2,7 +2,7 @@
 
 namespace Abstracciones.Interfaces.DA
 {
-    public interface IVehiculoDA
+    public interface IVehiculoDa
     {
         Task<IEnumerable<VehiculoResponse>> Obtener();
         Task<VehiculoDetalle> Obtener(Guid Id);

@@ -1,6 +1,5 @@
 ﻿using Abstracciones.Interfaces.API;
 using Abstracciones.Interfaces.Flujo;
-using Abstracciones.Modelos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -9,24 +8,24 @@ namespace API.Controllers
     [ApiController]
     public class MarcaController : ControllerBase, IMarcaController
     {
-        private IMarcaFlujo _marcaFlujo;
+        private readonly IMarcaFlujo _marcaFlujo;
         private ILogger<MarcaController> _logger;
 
-        public MarcaController(IMarcaFlujo marcaFLujo, ILogger<MarcaController> logger)
+        public MarcaController(IMarcaFlujo marcaFlujo, ILogger<MarcaController> logger)
         {
-            _marcaFlujo = marcaFLujo;
+            _marcaFlujo = marcaFlujo;
             _logger = logger;
         }
-        #region Operaciones
+
         [HttpGet]
         public async Task<IActionResult> Obtener()
         {
-            var resultado = await _marcaFlujo.Obtener();
-            if (!resultado.Any())
+            var result = await _marcaFlujo.Obtener();
+            if(!result.Any())
+            {
                 return NoContent();
-            return Ok(resultado);
+            }
+            return Ok(result);
         }
-        #endregion Operaciones
-
     }
 }

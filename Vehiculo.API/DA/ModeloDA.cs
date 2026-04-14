@@ -1,7 +1,12 @@
 ﻿using Abstracciones.Interfaces.DA;
 using Abstracciones.Modelos;
-using Microsoft.Data.SqlClient;
 using Dapper;
+using Microsoft.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DA
 {
@@ -10,14 +15,11 @@ namespace DA
         private IRepositorioDapper _repositorioDapper;
         private SqlConnection _sqlConnection;
 
-
         public ModeloDA(IRepositorioDapper repositorioDapper)
         {
             _repositorioDapper = repositorioDapper;
             _sqlConnection = _repositorioDapper.ObtenerRepositorio();
         }
-
-        #region Operaciones
 
         public async Task<IEnumerable<Modelo>> Obtener(Guid IdMarca)
         {
@@ -26,7 +28,5 @@ namespace DA
                 new { IdMarca = IdMarca });
             return resultadoConsulta;
         }
-        #endregion
-
     }
 }

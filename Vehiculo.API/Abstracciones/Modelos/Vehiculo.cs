@@ -5,13 +5,13 @@ namespace Abstracciones.Modelos
     public class VehiculoBase
     {
         [Required(ErrorMessage = "La propiedad placa es requerida")]
-        [RegularExpression(@"^[A-Za-z]{3}-[0-9]{3}$", ErrorMessage = "El formato de la placa debe ser ###-ABC")]
+        [RegularExpression(@"[A-Za-z]{3}-[0-9]{3}", ErrorMessage = "El formato de la placa debe ser ###-ABC")]
         public string Placa { get; set; }
         [Required(ErrorMessage = "La propiedad color es requerida")]
-        [StringLength(40, ErrorMessage = "La propiedad color debe ser mayor a 4 caracteresy menos de 40", MinimumLength = 4)]
+        [StringLength(40, ErrorMessage = "La propiedad color debe ser mayo5 a 4 caracteres y menos a 40", MinimumLength = 4)]
         public string Color { get; set; }
         [Required(ErrorMessage = "La propiedad año es requerida")]
-        [RegularExpression(@"(19|20)\d\d", ErrorMessage = "El formato de año no es válido")]
+        [RegularExpression(@"(18|20)\d\d", ErrorMessage = "El formato del año no es válido")]
         public int Anio { get; set; }
         [Required(ErrorMessage = "La propiedad precio es requerida")]
         public Decimal Precio { get; set; }
@@ -26,7 +26,6 @@ namespace Abstracciones.Modelos
     {
         public Guid IdModelo { get; set; }
     }
-
     public class VehiculoResponse : VehiculoBase
     {
         public Guid Id { get; set; }
@@ -38,5 +37,4 @@ namespace Abstracciones.Modelos
         public bool RevisionValida { get; set; }
         public bool RegistroValido { get; set; }
     }
-
 }

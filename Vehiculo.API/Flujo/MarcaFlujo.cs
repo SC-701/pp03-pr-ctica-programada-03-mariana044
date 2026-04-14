@@ -1,7 +1,11 @@
 ﻿using Abstracciones.Interfaces.DA;
 using Abstracciones.Interfaces.Flujo;
-using Abstracciones.Interfaces.Reglas;
 using Abstracciones.Modelos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Flujo
 {
@@ -13,10 +17,10 @@ namespace Flujo
         {
             _marcaDA = marcaDA;
         }
+
         public async Task<IEnumerable<Marca>> Obtener()
         {
-            var reultado = await _marcaDA.Obtener();
-            return resultado;
+            return await _marcaDA.Obtener();
         }
     }
 }

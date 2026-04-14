@@ -6,7 +6,7 @@
     <Name>BD</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{6cf87839-1455-47b0-846b-80da47e4bcee}</ProjectGuid>
+    <ProjectGuid>{0cd2494f-fac2-445e-970b-7703a7afded7}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -61,7 +61,7 @@
     <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\Vehiculos.sql" />
+    <Build Include="dbo\Tables\Vehiculo.sql" />
     <Build Include="dbo\Tables\Modelos.sql" />
     <Build Include="dbo\Tables\Marcas.sql" />
     <Build Include="dbo\Stored Procedures\ObtenerVehiculos.sql" />
@@ -69,5 +69,7 @@
     <Build Include="dbo\Stored Procedures\EliminarVehiculo.sql" />
     <Build Include="dbo\Stored Procedures\EditarVehiculo.sql" />
     <Build Include="dbo\Stored Procedures\AgregarVehiculo.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerModelos.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerMarcas.sql" />
   </ItemGroup>
 </Project>

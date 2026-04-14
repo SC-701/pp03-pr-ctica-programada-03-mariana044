@@ -4,6 +4,6 @@ namespace Abstracciones.Interfaces.Servicios
 {
     public interface IRevisionServicio
     {
-        Task<Revision> Obtener(String placa);
+        Task<Revision> Obtener(string placa);
     }
 }
