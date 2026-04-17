@@ -24,6 +24,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapGet("/", () => Results.Redirect("/Vehiculos/Index"));
 app.MapRazorPages();
 
 app.Run();

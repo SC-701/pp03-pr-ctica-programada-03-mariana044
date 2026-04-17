@@ -1,8 +1,8 @@
-﻿namespace Abstracciones.Modelos.Servicios.Revision
+﻿namespace Abstracciones.Modelos.Servicios.Registro
 {
-    public class FaltaRevision
+    public class Falta
     {
-        public string tipo { get; set; }
+        public string Tipo { get; set; }
         public string Descripcion { get; set; }
     }
 }

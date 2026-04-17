@@ -8,6 +8,8 @@ using Flujo;
 using Reglas;
 using Servicios;
 
+const string politicaAcceso = "PermitirOrigen";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +19,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: politicaAcceso, politica =>
+    {
+        politica.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
 
 builder.Services.AddScoped<IVehiculoFlujo, VehiculoFlujo>();
 builder.Services.AddScoped<IVehiculoDa, VehiculoDA>();
